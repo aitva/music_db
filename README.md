@@ -14,4 +14,4 @@ We have the following relations:
 - there is 1 `album` per `award`
 - there is M `menber` for N `album`
 
-![relations](./image/relation.jpg)
+![relations](./image/relations.jpg)
