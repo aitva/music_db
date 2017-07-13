@@ -48,3 +48,11 @@ ALTER TABLE `album` ADD FOREIGN KEY (`group_id`) REFERENCES `group`(`id`);
 ALTER TABLE `award` ADD `album_id` INT NOT NULL;
 ALTER TABLE `award` ADD FOREIGN KEY (`album_id`) REFERENCES `album`(`id`);
 
+# La table album_member permet de créer un lien entre les tables album et membre.
+CREATE TABLE `album_member` (
+    `album_id` INT NOT NULL,
+    `member_id` INT NOT NULL,
+    FOREIGN KEY (`album_id`) REFERENCES `album`(`id`),
+    FOREIGN KEY (`member_id`) REFERENCES `member`(`id`),
+    PRIMARY KEY (`album_id`, `member_id`)
+);
