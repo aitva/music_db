@@ -38,3 +38,12 @@ CREATE TABLE `album` (
     genre VARCHAR(128),
     sales INT
 );
+
+# Ajoute une colone au tableau album.
+ALTER TABLE `album` ADD `group_id` INT NOT NULL;
+# Ajoute une clef étrangère au tableau album.
+# La clef étrangère est group_id et pointe sur le tableau group et la colone id.
+ALTER TABLE `album` ADD FOREIGN KEY (`group_id`) REFERENCES `group`(`id`);
+
+ALTER TABLE `award` ADD `album_id` INT NOT NULL;
+ALTER TABLE `award` ADD FOREIGN KEY (`album_id`) REFERENCES `album`(`id`);
