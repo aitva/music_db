@@ -7,7 +7,7 @@ We have 4 tables : `group`, `album`, `member`, `award`.
 
 ![tables](./image/tables.jpg)
 
-## Relations
+## Relations
 
 We have the following relations:
 - there is 1 `group` per `album`
