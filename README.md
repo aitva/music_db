@@ -23,3 +23,7 @@ And we also want musician to play in many albums. To represent this relation:
 we create a new table indexing the relation between members and albums.
 
 ![N to M](./image/n_to_m.jpg)
+
+## Initialize The Database
+
+You can initialize the database with the command: `mysql < music_db.sql`
