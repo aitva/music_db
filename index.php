@@ -18,13 +18,18 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Music DB</title>
+    <title>Music DB</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
-<body>
-    <h1>My Music DB</h1>
+<body class="container">
+    <div class="page-header"><h1 class="text-center">Music DB</h1></div>
+    <ul class="nav nav-pills">
+        <li role="presentation" class="active"><a href="#">Home</a></li>
+        <li role="presentation"><a href="new_group.php">New Group</a></li>
+    </ul>
     <!-- On crée une liste d'article à partir de $groups -->
     <?php foreach ($groups as $g) { ?>
-    <article>
+    <article class="col-sm-offset-2 col-sm-8">
         <h2><?php echo $g['name']; ?></h2>
         <ul>
             <li><?php echo $g['start'];?></li>
