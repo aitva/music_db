@@ -24,7 +24,7 @@ try {
 <body class="container">
     <div class="page-header"><h1 class="text-center">Music DB</h1></div>
     <ul class="nav nav-pills">
-        <li role="presentation" class="active"><a href="#">Home</a></li>
+        <li role="presentation" class="active"><a href="index.php">Home</a></li>
         <li role="presentation"><a href="new_group.php">New Group</a></li>
     </ul>
     <!-- On crée une liste d'article à partir de $groups -->
