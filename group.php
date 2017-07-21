@@ -1,8 +1,8 @@
 <?php
 $get = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
-if (empty($get['id'])) {
+if (empty($get['id'])&& empty($get['name'])) {
     header('content-type: text/plain');
-    echo 'id must be set';
+    echo 'id and name parameter must be set';
     exit(1);
 }
 try {
@@ -11,7 +11,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // 2. Préparation de la requête par PHP.
-    $stmt = $pdo->prepare('SELECT `album`.*, `group`.name AS group_name  FROM `album` INNER JOIN `group` ON `album`.group_id=`group`.id WHERE group_id=:id');
+    $stmt = $pdo->prepare('SELECT * FROM `album` WHERE group_id=:id');
     // 3. On remplace les valeurs dans la requête.
     $stmt->bindValue(':id', $get['id']);
     // 4. On envoie la requête à MariaDB.
@@ -29,11 +29,11 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Discography - <?php echo $albums[0]['group_name']; ?></title>
+    <title>Discography - <?php echo $get['name']; ?></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body class="container">
-    <div class="page-header"><h1 class="text-center">Discography - <?php echo $albums[0]['group_name']; ?></h1></div>
+    <div class="page-header"><h1 class="text-center">Discography - <?php echo $get['name']; ?></h1></div>
     <ul class="nav nav-pills">
         <li role="presentation"><a href="index.php">Home</a></li>
         <li role="presentation"><a href="new_group.php">New Group</a></li>
@@ -41,12 +41,29 @@ try {
     <?php foreach ($albums as $a) { ?>
     <article class="col-sm-offset-2 col-sm-8">
         <h2><?php echo $a['name']; ?></h2>
-        <dl class="dl-horizontal">
-            <dt>date</dt><dd><?php echo $a['date']; ?></dd>
-            <dt>label</dt><dd><?php echo $a['label']; ?></dd>
-            <dt>sales</dt><dd><?php echo $a['sales']; ?></dd>
-            <dt>genre</dt><dd><?php echo $a['genre']; ?></dd>
-        </dl>
+        <ul>
+            <li>Date: <?php echo $a['date']; ?></li>
+            <li>Label: <?php echo $a['label']; ?></li>
+            <li>Sales: <?php echo $a['sales']; ?></li>
+            <li>Genre: <?php echo $a['genre']; ?></li>
+            <li> Member:
+                <ul>
+                <?php
+                // 2. Preparation
+                $stmt = $pdo->prepare('SELECT * FROM album INNER JOIN album_member ON album.id=album_member.album_id INNER JOIN member ON member.id=album_member.member_id WHERE album.id=:id;');
+                // 3. Remplacer les valeur
+                $stmt->bindValue(':id', $a['id']);
+                // 4. Exécute
+                $stmt->execute();
+                // 5. Récupére les données
+                while ($member = $stmt->fetch()) {
+                    echo '<li>'.$member['firstname'].' '.$member['lastname'].'</li>';
+
+                }
+                ?>
+                </ul>
+            </li>
+        </ul>
     </article>
     <?php } ?>
 </body>
