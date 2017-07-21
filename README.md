@@ -27,3 +27,11 @@ we create a new table indexing the relation between members and albums.
 ## Initialize The Database
 
 You can initialize the database with the command: `mysql < music_db.sql`
+
+## SQL Request With Rename
+
+In the folowing code, we select data from the database renaming the tables `album` as `a` and `group` as `g`. We also rename the column `group.name` as `group_name`.
+
+```SQL
+SELECT a.*, g.name AS group_name FROM `album` AS a INNER JOIN `group` AS g ON a.group_id=g.id;
+```
