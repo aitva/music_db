@@ -30,12 +30,23 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Discography - <?php echo $albums[0]['group_name']; ?></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
-<body>
-    <h1>Discography - <?php echo $albums[0]['group_name']; ?></h1>
+<body class="container">
+    <div class="page-header"><h1 class="text-center">Discography - <?php echo $albums[0]['group_name']; ?></h1></div>
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="index.php">Home</a></li>
+        <li role="presentation"><a href="new_group.php">New Group</a></li>
+    </ul>
     <?php foreach ($albums as $a) { ?>
-    <article>
+    <article class="col-sm-offset-2 col-sm-8">
         <h2><?php echo $a['name']; ?></h2>
+        <dl class="dl-horizontal">
+            <dt>date</dt><dd><?php echo $a['date']; ?></dd>
+            <dt>label</dt><dd><?php echo $a['label']; ?></dd>
+            <dt>sales</dt><dd><?php echo $a['sales']; ?></dd>
+            <dt>genre</dt><dd><?php echo $a['genre']; ?></dd>
+        </dl>
     </article>
     <?php } ?>
 </body>

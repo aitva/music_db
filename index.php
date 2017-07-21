@@ -31,11 +31,11 @@ try {
     <?php foreach ($groups as $g) { ?>
     <article class="col-sm-offset-2 col-sm-8">
         <h2><a href="group.php?<?php echo 'id='.$g['id']; ?>"><?php echo $g['name']; ?></a></h2>
-        <ul>
-            <li><?php echo $g['start'];?></li>
-            <li><?php echo $g['end'];?></li>
-            <li><?php echo $g['origin'];?></li>
-        </ul>
+        <dl class="dl-horizontal">
+            <dt>start</dt><dd><?php echo $g['start'];?></dd>
+            <dt>end</dt><dd><?php echo $g['end'];?></dd>
+            <dt>origin</dt><dd><?php echo $g['origin'];?></dd>
+        </dl>
     </article>
     <?php } ?>
 </body>
