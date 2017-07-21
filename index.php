@@ -30,7 +30,7 @@ try {
     <!-- On crée une liste d'article à partir de $groups -->
     <?php foreach ($groups as $g) { ?>
     <article class="col-sm-offset-2 col-sm-8">
-        <h2><?php echo $g['name']; ?></h2>
+        <h2><a href="group.php?<?php echo 'id='.$g['id']; ?>"><?php echo $g['name']; ?></a></h2>
         <ul>
             <li><?php echo $g['start'];?></li>
             <li><?php echo $g['end'];?></li>
